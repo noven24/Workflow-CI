@@ -3,7 +3,7 @@ from prophet import Prophet
 import pickle
 import os
 
-def train_model(data_path='dataset_processed.csv', model_path='model.pkl'):
+def train_model(data_path='namadataset_preprocessing/dataset_processed.csv', model_path='model.pkl'):
     if not os.path.exists(data_path):
         print(f"Error: {data_path} not found. Run dataset_preprocessing.py first.")
         return
