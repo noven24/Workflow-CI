@@ -15,9 +15,16 @@ def train_model(data_path='namadataset_preprocessing/dataset_processed.csv', mod
     model = Prophet(yearly_seasonality=True, weekly_seasonality=True, daily_seasonality=False)
     model.fit(df)
     
+    import mlflow
+    import mlflow.prophet
+    
     print(f"Saving model to {model_path}...")
     with open(model_path, 'wb') as f:
         pickle.dump(model, f)
+        
+    print("Logging model to MLflow...")
+    with mlflow.start_run():
+        mlflow.prophet.log_model(model, "model")
     
     print("Model training complete.")
 
